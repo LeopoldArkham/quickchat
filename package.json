@@ -1,0 +1,9 @@
+{
+    "name": "Quickchat",
+    "version": "0.0.1",
+    "description": "A disposable chatroom service built on Node and React",
+    "dependencies": {
+        "express": "^4.16.2",
+        "socket.io": "^2.0.4"
+    }
+}
