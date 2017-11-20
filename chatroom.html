@@ -33,7 +33,7 @@
   <body>
     <div id="prompt-bg">
       <form action="" id="username-form">
-        <input autocomplete="off"placeholder="Username" id="username"/>
+        <input autocomplete="off"placeholder="Username" id="username" autofocus/>
         <button>Join</button>
       </form>
     </div>
@@ -58,6 +58,7 @@
           if ($("#username").val().length > 0) {
             username = $("#username").val();
             $("#prompt-bg").fadeOut(250);
+            $("#m").focus();
           } else {
             return false;
           }
