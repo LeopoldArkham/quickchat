@@ -38,7 +38,7 @@
       </form>
     </div>
     <div id = "top">
-      <span>Room <span id="roomID"></span> Connected users: <span id="nb_users" >0</span></span>
+      <span><span id="nb_users" >No one</span> in room <span id="roomID"></span></span>
     </div>
     <ul id="messages"></ul>
     <form id="text-input" action="">
@@ -87,13 +87,13 @@
           
           // Update connected users
           socket.on('nb_users', function(nb) {
-            $('#nb_users').text(nb);
+            let pluralized = nb > 1? "users":"user";
+            $('#nb_users').text(nb + " " + pluralized);
           })
         });
         return false;
         });
 
-        // @todo: Why is this syntax necessary?
         
     </script>
   </body>
