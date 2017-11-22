@@ -1,0 +1,5 @@
+{
+    "name": "Quickchat",
+    "description": "Disposable chatroom service using Node.js and Socket.io",
+    "repository": "https://github.com/LeopoldArkham/quickchat"
+  }
