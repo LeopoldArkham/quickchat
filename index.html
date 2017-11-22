@@ -54,7 +54,6 @@
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-  <script src="js/md5.min.js"></script>
   <script>
     var socket = io();
     $("#create-room").submit(function () {
@@ -62,9 +61,6 @@
       var pw = $("#pw").val();
 
       if (pw.length > 0) {
-        alert("before Hashed password");
-        var md5 = md5(pw);
-        alert("Hashed password");
         socket.emit('room-with-pw', roomID, md5);
       }
       window.location.replace(window.location.href + "rooms/" + roomID);
