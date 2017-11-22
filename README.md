@@ -1,6 +1,7 @@
 # quickchat
 
 A proof-of-concept chatroom service using Node.js, Express, and Socket.io.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Features:
 - Multi-room
