@@ -14,3 +14,4 @@ A proof-of-concept chatroom service using Node.js, Express, and Socket.io.
 - Security: Persist room data on disk so that previously password protected rooms
 can't be accessed publicly if the server restarts.
 - Allow room creator to destroy a room.
+- Factor out common code for protected and public chatrooms.
