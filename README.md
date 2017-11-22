@@ -24,3 +24,4 @@ can't be accessed publicly if the server restarts.
 No point in hashing it on the client side (as I initially did), since the server would then
 simply expect the hash that the attacker intercepted.
 - CLI or web-based dashboard with simple analytics
+- Merge consecutive messages from the same author
