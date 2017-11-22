@@ -35,3 +35,81 @@
     display: block;
     width: 100%;
   }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font: 13px Helvetica, Arial;
+  }
+
+  #prompt-bg {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 37, 48, 0.9);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    /* Why is it not already at the top? */
+    z-index: 1000;
+  }
+
+  #prompt-bg form {
+    margin-top: 20%;
+    display: inline-block;
+    width: 20%;
+  }
+
+  #prompt-bg input {
+    display: block;
+    width: 100%;
+  }
+
+  #prompt-bg button {
+    display: block;
+    width: 100%;
+  }
+
+  #uname {
+    width: 20%;
+  }
+
+  #text-input {
+    background: #000;
+    padding: 3px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  #text-input input {
+    border: 0;
+    padding: 10px;
+    width: 90%;
+    margin-right: .5%;
+  }
+
+  #text-input button {
+    width: 9%;
+    background: rgb(130, 224, 255);
+    border: none;
+    padding: 10px;
+  }
+
+  #messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #messages li {
+    padding: 5px 10px;
+  }
+
+  #messages li:nth-child(odd) {
+    background: #eee;
+  }

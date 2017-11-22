@@ -1,6 +1,9 @@
 var app = require("express")();
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
+var express = require("express");
+
+app.use(express.static(__dirname + '/html'));
 
 // Serve root
 app.get("/", function(req, res) {
@@ -14,9 +17,9 @@ var rooms = new Object();
 app.get("/rooms/:roomID", function(req, res) {
   let room_id = req.params.roomID;
   if (room_id in rooms && rooms[room_id].isProtected()) {
-    res.sendFile(__dirname + "html//chatroom_protected.html");
+    res.sendFile(__dirname + "/html/chatroom_protected.html");
   } else {
-    res.sendFile(__dirname + "html//chatroom.html");
+    res.sendFile(__dirname + "/html/chatroom.html");
   }
 });
 
