@@ -105,6 +105,7 @@
   </form>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="js/md5.min.js"></script>
   <script>
     // JavaScript somehow lacks this.
     Array.prototype.last = function () {
@@ -132,7 +133,7 @@
       if ($("#username").val().length > 0
         && $("#password").val().length > 0) {
         username = $("#username").val();
-        password = $("#password").val();
+        password = md5($("#password").val());
       } else {
         // Return false to avoid page reload
         return false;

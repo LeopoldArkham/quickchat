@@ -101,6 +101,7 @@ io.on("connection", function(socket) {
   // Propagate recieved messages
   socket.on("msg", function(_msg) {
     io.to(socket.room).emit("msg", socket.username, _msg);
+    console.log("Propagating message");
   });
 });
 
