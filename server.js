@@ -4,7 +4,7 @@ var io = require("socket.io")(http);
 
 // Serve root
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/html/index.html");
 });
 
 // Associative array, tracks amount of connected users per room.
@@ -14,9 +14,9 @@ var rooms = new Object();
 app.get("/rooms/:roomID", function(req, res) {
   let room_id = req.params.roomID;
   if (room_id in rooms && rooms[room_id].isProtected()) {
-    res.sendFile(__dirname + "/chatroom_protected.html");
+    res.sendFile(__dirname + "html//chatroom_protected.html");
   } else {
-    res.sendFile(__dirname + "/chatroom.html");
+    res.sendFile(__dirname + "html//chatroom.html");
   }
 });
 
