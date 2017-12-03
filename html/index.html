@@ -16,19 +16,7 @@
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-  <script>
-    var socket = io();
-    $("#create-room").submit(function () {
-      var roomID = $("#room-name").val();
-      var pw = $("#pw").val();
-
-      if (pw.length > 0) {
-        socket.emit('room-with-pw', roomID, pw);
-      }
-      window.location.replace(window.location.href + "rooms/" + roomID);
-      return false;
-    });
-  </script>
+  <script src="/index.js"></script>
 </body>
 
 </html>
