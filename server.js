@@ -6,7 +6,7 @@ var express = require("express");
 app.use(express.static(__dirname + "client/build"));
 
 // Serve root
-app.get("/", function(req, res) {
+app.get("*", function(req, res) {
   res.sendFile(__dirname + "/client/build/index.html");
 });
 
