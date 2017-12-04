@@ -186,7 +186,8 @@ class App extends Component {
       nb_users: 0,
       messages: []
     };
-    this.socket = io("http://localhost:5000");
+    const PORT = process.env.PORT || 5000;
+    this.socket = io("http://localhost:" + PORT);
 
     this.handleCreateRoom = this.handleCreateRoom.bind(this);
     this.handleJoinRoom = this.handleJoinRoom.bind(this);
