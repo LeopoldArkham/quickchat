@@ -3,25 +3,15 @@ var http = require("http").Server(app);
 var io = require("socket.io")(http);
 var express = require("express");
 
-app.use(express.static(__dirname + '/html'));
+app.use(express.static(__dirname + "client/build"));
 
 // Serve root
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/html/index.html");
+  res.sendFile(__dirname + "/client/build/index.html");
 });
 
 // Associative array, tracks amount of connected users per room.
 var rooms = new Object();
-
-// Serve room
-app.get("/rooms/:roomID", function(req, res) {
-  let room_id = req.params.roomID;
-  if (room_id in rooms && rooms[room_id].isProtected()) {
-    res.sendFile(__dirname + "/html/chatroom_protected.html");
-  } else {
-    res.sendFile(__dirname + "/html/chatroom.html");
-  }
-});
 
 // Tracks a chatroom's persisted properties.
 // Also an accidental pun.
@@ -54,8 +44,11 @@ class Room {
 }
 
 io.on("connection", function(socket) {
+  console.log("Client connected");
+  // Creates a password protected room
   socket.on("room-with-pw", function(room_name, pw) {
     rooms[room_name] = new Room(room_name, pw);
+    console.log("Created room " + room_name + " with password: " + pw);
   });
 
   // Joining/creating a room
@@ -63,13 +56,16 @@ io.on("connection", function(socket) {
     // Track number of users in room
     if (!(room in rooms)) {
       rooms[room] = new Room(room, "");
+    } else if (rooms[room].isProtected()) {
+      // Can't join a protected room through here.
+      return;
     }
     rooms[room].userConnected();
 
     // Propagate number of users
     socket.join(room);
     io.to(room).emit("nb_users", rooms[room].connectedUsers);
-    // Persist rom ID and username on the socket itself
+    // Persist room ID and username on the socket itself
     socket.room = room;
     socket.username = username;
 
@@ -88,7 +84,7 @@ io.on("connection", function(socket) {
       // Propagate number of users
       socket.join(room);
       io.to(room).emit("nb_users", rooms[room].connectedUsers);
-      // Persist rom ID and username on the socket itself
+      // Persist room ID and username on the socket itself
       socket.room = room;
       socket.username = username;
       io.to(room).emit("auth-ok");
@@ -106,7 +102,18 @@ io.on("connection", function(socket) {
     io.to(socket.room).emit("msg", socket.username, _msg);
     console.log("Propagating message");
   });
+
+  socket.on("check-protected", function(room) {
+    var r;
+    if (room in rooms) {
+      if (rooms[room].isProtected()) {
+        r = true;
+      } else {
+        r = false;
+      }
+    }
+    io.to(socket.id).emit("is-protected", r);
+  });
 });
 
-http.listen(process.env.PORT || 3000, function() {
-});
+http.listen(process.env.PORT || 5000, function() {});
