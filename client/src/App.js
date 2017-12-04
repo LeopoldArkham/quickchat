@@ -202,12 +202,10 @@ class App extends Component {
 
     // fragile.
     var room = window.location.href.split('/').last();
-    console.log(window.location.href);
     if (room.length > 0) {
       // Joining a room
       this.setState({room: room});
       this.socket.emit("check-protected", room);
-      console.log("Requestion protected " + room);
     } else {
       // Creating a room
       this.setState({renderStep: RenderStep.RoomCreation});
@@ -234,7 +232,6 @@ class App extends Component {
   }
 
   handleProtected(is_protected) {
-    console.log("is protected?");
     if (is_protected) {
       this.setState({renderStep: RenderStep.ProtectedLogin});      
     } else {
@@ -269,7 +266,6 @@ class App extends Component {
 
   handleSend(msg) {
     this.socket.emit("msg", msg);
-    console.log("called");
   }
 
   render() {
